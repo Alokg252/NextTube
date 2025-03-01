@@ -5,6 +5,7 @@ import Display from "@/components/Display";
 import { useState, useEffect } from "react";
 import VideoPlayer from "@/components/VideoPlayer";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { Suspense } from "react";
 export default function Home() {
 
   const searchParams = useSearchParams();
@@ -31,11 +32,13 @@ export default function Home() {
 
   return (
     <>
+      <Suspense>
       <br /><br />
       <Navbar setside={setside} side={side} play={play} vside={vside} setvside={setvside} setplay={setplay} setlist={setlist} list={list} setfind={setfind} find={find} settitle={settitle} title={title} />
       <Sidebar setpid={setpid} side={side} />
       <Display pid={pid} play={play} setplay={setplay} vside={vside} setlist={setlist} list={list} settitle={settitle} title={title} find={find} />
       <VideoPlayer play={play} setplay={setplay} />
+      </Suspense>
     </>
   );
 }
