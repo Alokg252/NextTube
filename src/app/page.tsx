@@ -2,32 +2,20 @@
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import Display from "@/components/Display";
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import VideoPlayer from "@/components/VideoPlayer";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import SearchParam from "@/components/SearchParam";
 
 function HomeContent() {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const router = useRouter();
 
   const [side, setside] = useState("-left-[25%]");
-  const [pid, setpid] = useState(searchParams.get('p') || "");
-  const [play, setplay] = useState(searchParams.get('v') || "");
+  const [pid, setpid] = useState("");
+  const [play, setplay] = useState("");
   const [vside, setvside] = useState("-right-[21%]");
   const [list, setlist] = useState([]);
-  const [find, setfind] = useState(searchParams.get('s') || "");
+  const [find, setfind] = useState("");
   const [title, settitle] = useState("Latest Videos");
 
-  useEffect(() => {
-    const newParams = new URLSearchParams();
-    if (pid) newParams.set('p', pid);
-    if (play) newParams.set('v', play);
-    if (find) newParams.set('s', find);
-
-    const newPathname = `${pathname}?${newParams.toString()}`;
-    router.push(newPathname);
-  }, [pid, play, find]);
 
   return (
     <>
@@ -36,6 +24,7 @@ function HomeContent() {
       <Sidebar setpid={setpid} side={side} />
       <Display pid={pid} play={play} setplay={setplay} vside={vside} setlist={setlist} list={list} settitle={settitle} title={title} find={find} />
       <VideoPlayer play={play} setplay={setplay} />
+      <SearchParam pid={pid} play={play} find={find} setpid={setpid} setplay={setplay} setfind={setfind} />
     </>
   );
 }
