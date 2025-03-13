@@ -26,7 +26,6 @@ const Display:React.FC<Props> = ({pid, play, setplay, vside, setlist, list, sett
     if(pid){
       fetch(`/api/allvideo?pid=${pid}`)
       .then(res => res.json())
-      // .then(res => console.log(res))
       .then(res => setlist(res))
       .catch(err => {setlist([]); console.log(err)})
       
