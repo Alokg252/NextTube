@@ -16,7 +16,6 @@ function HomeContent() {
   const [find, setfind] = useState("");
   const [title, settitle] = useState("Latest Videos");
 
-
   return (
     <>
       <br /><br />
