@@ -8,9 +8,8 @@ export async function GET(request:Request) {
     const pid = url.searchParams.get('pid');
     if(pid){
         const data = await supabase.from('playlist').select('title').eq('pid',pid);
-        
-        return NextResponse.json(data.data);
+        return NextResponse.json(data.error ? [] : data.data);
     }
     const data = await supabase.from('playlist').select('pid,title,desc');
-    return NextResponse.json(data.data);
+    return NextResponse.json(data.error ? [] : data.data);
 }

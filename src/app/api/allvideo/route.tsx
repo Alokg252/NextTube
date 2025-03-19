@@ -7,7 +7,7 @@ export async function GET(request:Request) {
     if(pid && pid.startsWith("PL") && pid.length<=34){
         
         const data = await supabase.from('video').select('vid, title, publish, duration').eq('pid',pid).order('publish',{ascending:false});   
-        return NextResponse.json(data.data);
+        return NextResponse.json(data.error ? [] : data.data);
     }    
     return NextResponse.json([]);
 }

@@ -30,7 +30,7 @@ const Sidebar: React.FC<Props> = ({ side, setpid }) => {
                 <h2 className={`text-lg p-3 font-bold py-5 fixed bg-red-400 text-gray-800 transition-all ${side} top-14 my-1 w-1/4`}>Playlists</h2>
                 <div className="">
                     <ul className="mt-4">
-                        {playlistData.map((item: PlaylistData, index: number) => (
+                        {playlistData.length ? playlistData.map((item: PlaylistData, index: number) => (
                             <li key={index} className='hover:bg-gray-700 rounded-t-xl'>
                                 <details key={index} className=' m-3'>
                                     <summary className='overflow-hidden text-ellipsis whitespace-nowrap'
@@ -48,7 +48,7 @@ const Sidebar: React.FC<Props> = ({ side, setpid }) => {
                                 </details>
                                 <hr />
                             </li>
-                        ))}
+                        )) : 'No Playlists Found'}
                     </ul>
                 </div>
             </div>
