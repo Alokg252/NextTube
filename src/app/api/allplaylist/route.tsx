@@ -11,5 +11,6 @@ export async function GET(request:Request) {
         return NextResponse.json(data.error ? [] : data.data);
     }
     const data = await supabase.from('playlist').select('pid,title,desc');
-    return NextResponse.json(data.error ? [] : data.data);
+    const response = data.error ? [] : data.data;
+    return NextResponse.json(response);
 }

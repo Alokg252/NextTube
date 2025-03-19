@@ -8,10 +8,10 @@ import SearchParam from "@/components/SearchParam";
 
 function HomeContent() {
 
-  const [side, setside] = useState("-left-[25%]");
+  const [side, setside] = useState(false);
   const [pid, setpid] = useState("");
   const [play, setplay] = useState("");
-  const [vside, setvside] = useState("-right-[21%]");
+  const [vside, setvside] = useState(false);
   const [list, setlist] = useState([]);
   const [find, setfind] = useState("");
   const [title, settitle] = useState("Latest Videos");

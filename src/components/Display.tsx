@@ -5,7 +5,7 @@ interface Props{
   pid:string;
   play:string;
   setplay:React.Dispatch<React.SetStateAction<string>>;
-  vside: string;
+  vside: boolean;
   setlist:React.Dispatch<React.SetStateAction<videoData[]>> | React.Dispatch<React.SetStateAction<never[]>>;
   list:videoData[] | never[];
   settitle:React.Dispatch<React.SetStateAction<string>>;
@@ -64,7 +64,7 @@ const Display:React.FC<Props> = ({pid, play, setplay, vside, setlist, list, sett
 </>)}
 
   return (
-      <div className={`flex my-4 z-10 gap-10 transition-all justify-center absolute h-[92%] ${play? `w-[21%] ${vside} opacity-90 bg-slate-200`: "w-full right-0"} overflow-auto`}>
+      <div className={`flex my-4 z-10 gap-10 transition-all justify-center absolute h-[92%] ${play? `w-[21%] ${vside ? 'right-0' : '-right-[21%]'} opacity-90 bg-slate-200`: "w-full right-0"} overflow-auto`}>
       <div className='overflow-hidden text-ellipsis block h-[11%] w-10/12' >
       <h1 className={`${play?`text-md font-bold my-3`:`text-3xl font-extrabold my-6`}`}>{title}</h1>
       </div>
