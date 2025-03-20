@@ -5,7 +5,7 @@ interface Props{
   pid:string;
   play:string;
   setplay:React.Dispatch<React.SetStateAction<string>>;
-  vside: string;
+  vside: boolean;
   setlist:React.Dispatch<React.SetStateAction<videoData[]>> | React.Dispatch<React.SetStateAction<never[]>>;
   list:videoData[] | never[];
   settitle:React.Dispatch<React.SetStateAction<string>>;
@@ -45,10 +45,9 @@ const Display:React.FC<Props> = ({pid, play, setplay, vside, setlist, list, sett
     .catch(err => {setlist([]); console.log(err)})
   }, [])
 
-
   const Card = ({ item }: { item: videoData, key: number, play:string, setplay:React.Dispatch<React.SetStateAction<string>>; })=>{
     return (<>
-      <div className="p-4 border rounded-xl hover:shadow-lg w-72 hover:shadow-red-200 shadow-lg bg-white"
+      <div className="p-4 border rounded-xl hover:shadow-lg w-72 max-md:w-56 hover:shadow-red-200 shadow-lg bg-white"
         onClick={() => {
           setplay(item.vid);
         }}>
@@ -64,11 +63,11 @@ const Display:React.FC<Props> = ({pid, play, setplay, vside, setlist, list, sett
 </>)}
 
   return (
-      <div className={`flex my-4 z-10 gap-10 transition-all justify-center absolute h-[92%] ${play? `w-[21%] ${vside} opacity-90 bg-slate-200`: "w-full right-0"} overflow-auto`}>
+      <div className={`flex my-4 max-lg:my-8 max-md:my-12 z-10 gap-10 transition-all justify-center absolute h-[92%] ${play? `md:w-[21%] max-md:w-full max-md:h-2/3 max-md:top-[31%] ${vside ? 'right-0' : 'md:-right-[21%]'} md:opacity-90 bg-slate-200`: "w-full right-0"} overflow-auto`}>
       <div className='overflow-hidden text-ellipsis block h-[11%] w-10/12' >
       <h1 className={`${play?`text-md font-bold my-3`:`text-3xl font-extrabold my-6`}`}>{title}</h1>
       </div>
-      <div className={`my-24 flex flex-wrap justify-center w-full absolute right-0 items-center ${play? "gap-1": "gap-8"}`}>
+      <div className={`my-24 flex flex-wrap justify-center w-full absolute right-0 items-center ${play? "gap-1 max-md:gap-8": "gap-8"}`}>
       {
         list.length ? ((list.map((item:videoData, index:number) => {
           const pub = new Date(item.publish);
