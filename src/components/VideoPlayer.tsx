@@ -8,7 +8,7 @@ interface Props{
 const VideoPlayer:React.FC<Props> = ({play, setplay}) => {
   return (
     <>
-      <div className={`${play?"w-full":"w-0"} h-[90%] transition-all bg-slate-500 absolute mt-7`} autoFocus 
+      <div className={`${play?"w-full max-md:h-[28%]":"md:w-0 max-md:h-0"} h-[90%] transition-all bg-slate-500 absolute mt-7`} autoFocus 
       onKeyDown={(e)=>{
         if(e.key === "Escape"){
           setplay("");

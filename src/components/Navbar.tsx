@@ -19,7 +19,7 @@ interface Props {
 }
 
 const Hamburger = ({ state, setstate, side }: { state: boolean, setstate: Dispatch<SetStateAction<boolean>>, side:boolean }) => {
-  return (<button className="text-gray-500 hover:text-blue-500 focus:outline-none"
+  return (<button className={`text-gray-500 hover:text-blue-500 focus:outline-none ${side ? "" : "max-md:hidden"}`}
     onClick={(e) => {
       e.preventDefault();
       setstate(!state);
@@ -33,12 +33,12 @@ const Hamburger = ({ state, setstate, side }: { state: boolean, setstate: Dispat
 const Navbar: React.FC<Props> = ({ setside, side, setplay, play, setvside, vside, setlist, list, setfind, find, settitle, title }) => {
   return (
     <nav className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-      <div className="container flex justify-between items-center p-4">
+      <div className="container flex md:justify-between items-center p-4">
 
         <div className="flex items-center justify-between space-x-8">
           <Hamburger state={side} setstate={setside} side={true} />
-          <div className="text-2xl  text-red-500 font-bold">YouTube</div>
-          <button className='bg-red-400 transition-all hover:bg-red-600 text-white rounded-lg py-2 px-4 text-lg'
+          <div className="text-2xl text-red-500 font-bold">YouTube</div>
+          <button className='bg-red-400 transition-all hover:bg-red-600 text-white rounded-lg py-2 px-4 text-lg max-xs:hidden'
             onClick={() => {
               const currentURL = typeof window !== "undefined" ? window.location.href : globalThis.location.href; 
               navigator.share({
@@ -48,10 +48,10 @@ const Navbar: React.FC<Props> = ({ setside, side, setplay, play, setvside, vside
             }}>share</button>
         </div>
 
-        <div className="flex justify-between w-[35%] items-center">
+        <div className="flex justify-between w-[35%] items-center max-md:ml-12">
           
-
           <SearchForm list={list} setlist={setlist} setfind={setfind} find={find} settitle={settitle} title={title} />
+
           <span className={`${play?"":"invisible"}`} >
             <Hamburger state={vside} setstate={setvside} side={false} />
             &nbsp;&nbsp;
