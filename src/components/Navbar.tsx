@@ -38,7 +38,7 @@ const Navbar: React.FC<Props> = ({ setside, side, setplay, play, setvside, vside
         <div className="flex items-center justify-between space-x-8">
           <Hamburger state={side} setstate={setside} side={true} />
           <div className="text-2xl text-red-500 font-bold">YouTube</div>
-          <button className='bg-red-400 transition-all hover:bg-red-600 text-white rounded-lg py-2 px-4 text-lg max-xs:hidden'
+          <button className='bg-red-400 transition-all m-0 hover:bg-red-600 text-white rounded-lg py-2 px-4 text-lg max-xs:hidden'
             onClick={() => {
               const currentURL = typeof window !== "undefined" ? window.location.href : globalThis.location.href; 
               navigator.share({
@@ -48,7 +48,7 @@ const Navbar: React.FC<Props> = ({ setside, side, setplay, play, setvside, vside
             }}>share</button>
         </div>
 
-        <div className="flex justify-between w-[35%] items-center max-md:ml-12">
+        <div className="flex justify-between w-[35%] items-center flex-shrink max-md:ml-12">
           
           <SearchForm list={list} setlist={setlist} setfind={setfind} find={find} settitle={settitle} title={title} />
 

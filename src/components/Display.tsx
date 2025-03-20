@@ -47,14 +47,14 @@ const Display:React.FC<Props> = ({pid, play, setplay, vside, setlist, list, sett
 
   const Card = ({ item }: { item: videoData, key: number, play:string, setplay:React.Dispatch<React.SetStateAction<string>>; })=>{
     return (<>
-      <div className="p-4 border rounded-xl hover:shadow-lg w-72 max-md:w-56 hover:shadow-red-200 shadow-lg bg-white"
+      <div className="p-4 border flex-1 max-w-[330] max-lg:min-w-[200px] max-md:min-w-[180px] min-w-[280px] rounded-xl hover:shadow-lg hover:shadow-red-200 shadow-lg bg-white"
         onClick={() => {
           setplay(item.vid);
         }}>
-        <img src={`https://i.ytimg.com/vi/${item.vid}/mqdefault.jpg`} alt={item.title} className=" h-auto rounded-t-xl" />
+        <img src={`https://i.ytimg.com/vi/${item.vid}/mqdefault.jpg`} alt={item.title} className=" h-auto w-auto rounded-t-xl" />
         <div className="p-2">
-          <h2 className="text-md font-bold overflow-hidden text-ellipsis whitespace-nowrap block">{item.title}</h2>
-          <p className="text-xs text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap flex justify-between">
+          <h2 className="text-md max-xl:text-[12px] font-bold overflow-hidden text-ellipsis whitespace-nowrap block">{item.title}</h2>
+          <p className="text-xs max-xl:text-[10px] text-gray-500 overflow-hidden gap-4 text-ellipsis whitespace-nowrap flex justify-between">
             <span className="font-bold">{`${item.publish}`}</span> 
             <span className="font-bold">{`${item.duration}`}</span> 
           </p>
@@ -67,7 +67,7 @@ const Display:React.FC<Props> = ({pid, play, setplay, vside, setlist, list, sett
       <div className='overflow-hidden text-ellipsis block h-[11%] w-10/12' >
       <h1 className={`${play?`text-md font-bold my-3`:`text-3xl font-extrabold my-6`}`}>{title}</h1>
       </div>
-      <div className={`my-24 flex flex-wrap justify-center w-full absolute right-0 items-center ${play? "gap-1 max-md:gap-8": "gap-8"}`}>
+      <div className={`my-24 p-5 flex flex-wrap justify-center flex-shrink flex-grow w-full absolute right-0 items-center ${play? "gap-1 max-md:gap-8": "gap-8"}`}>
       {
         list.length ? ((list.map((item:videoData, index:number) => {
           const pub = new Date(item.publish);
