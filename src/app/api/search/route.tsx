@@ -8,6 +8,6 @@ export async function GET(request:Request) {
     const pattern = `%${query?.replace(" ","%")}%`;
     console.log(`fetching pattern=${pattern}`);
     const data = await supabase.from('video').select('vid,title,publish,duration').ilike('title',pattern);
-    console.log("res:" + data);
+    console.log(data);
     return NextResponse.json(data.error ? [] : data.data);
 }

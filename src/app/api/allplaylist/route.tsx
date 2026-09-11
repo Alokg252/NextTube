@@ -12,7 +12,7 @@ export async function GET(request:Request) {
     }
     console.log("fetching all playlists..");
     const data = await supabase.from('playlist').select('pid,title,desc');
-    console.log("res:" + data);
+    console.log(data);
     const response = data.error ? [] : data.data;
     return NextResponse.json(response);
 }
