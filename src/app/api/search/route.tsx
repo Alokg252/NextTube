@@ -7,6 +7,6 @@ export async function GET(request:Request) {
     const query = url.searchParams.get('q');
     const pattern = `%${query?.replace(" ","%")}%`;
 
-    const data = await supabase.from('video').select('vid,title,publish,duration').ilike('title',pattern);
+    const data = await supabase.from('public.video').select('vid,title,publish,duration').ilike('title',pattern);
     return NextResponse.json(data.error ? [] : data.data);
 }
