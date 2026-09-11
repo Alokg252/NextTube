@@ -4,6 +4,8 @@ import supabase from "@/database/supaClient";
 export async function GET(request:Request) {
     const url = new URL(request.url);
     const query = url.searchParams.get('q');
-    const data = await supabase.from('public.video').select('vid, title, publish, duration').order('publish',{ascending:false}).limit((Number.parseInt(query as string)));
+    console.log(`fetching query request for q=${query}`);
+    const data = await supabase.from('video').select('vid, title, publish, duration').order('publish',{ascending:false}).limit((Number.parseInt(query as string)));
+    console.log("res:" + data);
     return NextResponse.json(data.error ? [] : data.data);
 }

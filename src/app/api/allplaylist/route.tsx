@@ -7,10 +7,12 @@ export async function GET(request:Request) {
     const url = new URL(request.url);
     const pid = url.searchParams.get('pid');
     if(pid){
-        const data = await supabase.from('public.playlist').select('title').eq('pid',pid);
+        const data = await supabase.from('playlist').select('title').eq('pid',pid);
         return NextResponse.json(data.error ? [] : data.data);
     }
-    const data = await supabase.from('public.playlist').select('pid,title,desc');
+    console.log("fetching all playlists..");
+    const data = await supabase.from('playlist').select('pid,title,desc');
+    console.log("res:" + data);
     const response = data.error ? [] : data.data;
     return NextResponse.json(response);
 }
